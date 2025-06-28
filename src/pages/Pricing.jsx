@@ -1,26 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom'; // Keep Link for navigation outside header
-import { Dialog, DialogPanel } from '@headlessui/react'; // For mobile menu dialog
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'; // For mobile menu icons
+import { Link } from 'react-router-dom'; // Keep Link for navigation
 import { CheckIcon } from '@heroicons/react/20/solid'; // For feature list checkmarks
-import BackToTopButton from '../components/BackToTopButton'; // Ensure this path is correct
-
-// IMAGE CONFIGURATION for logos and the background illustration
-const IMAGE_CONFIG = {
-  companyLogo: "https://placehold.co/100x32/1E293B/E2E8F0?text=KIDDO", // Kiddo logo for header
-  mobileLogo: "https://placehold.co/100x32/1E293B/E2E8F0?text=KIDDO", // Kiddo logo for mobile dialog
-};
-
-// Navigation links (consistent with other pages)
-const navigation = [
-  { name: 'Home', href: '/' },
-  { name: 'Learning Buddies', href: '/learning-buddies' },
-  { name: 'Pricing', href: '/pricing' },
-  { name: 'Our Track Record', href: '/our-track-record' },
-  { name: 'About Us', href: '/about' },
-  { name: 'Team', href: '/team' }, // Link to the Team page
-];
+import Header from '../components/Header'; // Import the global Header component
+import BackToTop from '../components/BackToTop'; // Ensure this path is correct and name matches
 
 const pricingTiers = [
   {
@@ -74,7 +57,8 @@ const pricingTiers = [
 ];
 
 export default function PricingPage() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false); // State for mobile menu
+  // mobileMenuOpen state and related Dialog/DialogPanel imports are removed
+  // as the global Header component now handles navigation and mobile menu logic.
 
   // Framer Motion variants for general section animation
   const sectionVariants = {
@@ -96,103 +80,20 @@ export default function PricingPage() {
 
   return (
     <div className="bg-gray-900 min-h-screen font-rob overflow-x-hidden">
-      {/* Fixed Header */}
-      <motion.header
-        className="fixed inset-x-0 top-0 z-50 bg-white/80 backdrop-blur-sm shadow-sm"
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-      >
-        <nav aria-label="Global" className="flex items-center justify-between p-6 lg:px-8">
-          <div className="flex lg:flex-1">
-            <Link to="/" className="-m-1.5 p-1.5">
-              <span className="sr-only">Kiddo Skills</span>
-              <img
-                alt="Kiddo Skills Logo"
-                src={IMAGE_CONFIG.companyLogo}
-                className="h-8 w-auto"
-              />
-            </Link>
-          </div>
-          <div className="flex lg:hidden">
-            <button
-              type="button"
-              onClick={() => setMobileMenuOpen(true)}
-              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-            >
-              <span className="sr-only">Open Kiddo menu</span>
-              <Bars3Icon aria-hidden="true" className="size-6" />
-            </button>
-          </div>
-          <div className="hidden lg:flex lg:gap-x-12">
-            {navigation.map((item) => (
-              <Link key={item.name} to={item.href} className="text-sm font-semibold leading-6 text-gray-900 hover:text-indigo-600 transition-colors duration-200">
-                {item.name}
-              </Link>
-            ))}
-          </div>
-          <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <Link to="/login" className="text-sm font-semibold leading-6 text-gray-900 hover:text-indigo-600 transition-colors duration-200">
-              Kiddo Login <span aria-hidden="true">→</span>
-            </Link>
-          </div>
-        </nav>
-        <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
-          <div className="fixed inset-0 z-50 bg-gray-900/70" onClick={() => setMobileMenuOpen(false)} />
-          <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
-            <div className="flex items-center justify-between">
-              <Link to="/" className="-m-1.5 p-1.5">
-                <span className="sr-only">Kiddo Skills</span>
-                <img
-                  alt="Kiddo Skills Logo"
-                  src={IMAGE_CONFIG.mobileLogo}
-                  className="h-8 w-auto"
-                />
-              </Link>
-              <button
-                type="button"
-                onClick={() => setMobileMenuOpen(false)}
-                className="-m-2.5 rounded-md p-2.5 text-gray-700"
-              >
-                <span className="sr-only">Close Kiddo menu</span>
-                <XMarkIcon aria-hidden="true" className="size-6" />
-              </button>
-            </div>
-            <div className="mt-6 flow-root">
-              <div className="-my-6 divide-y divide-gray-500/10">
-                <div className="space-y-2 py-6">
-                  {navigation.map((item) => (
-                    <Link
-                      key={item.name}
-                      to={item.href}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                    >
-                      {item.name}
-                    </Link>
-                  ))}
-                </div>
-                <div className="py-6">
-                  <Link
-                    to="/login"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                  >
-                    Kiddo Login
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </DialogPanel>
-        </Dialog>
-      </motion.header>
+      {/* Render the global Header component.
+          It will provide the fixed navigation and mobile menu. */}
+      <Header />
 
-      {/* Main Content Area (Pricing Section) */}
+      {/* Main Content Area (Pricing Section)
+          pt-24 is added to push content down, clearing the fixed header.
+          block w-full ensures it takes full width.
+          min-h-[calc(100vh-80px)] ensures it takes up at least the remaining viewport height,
+          assuming the header is approximately 80px tall. */}
       <section
-        className="relative pt-24 pb-16 sm:pb-24 lg:pb-32 font-rob text-gray-200 block w-full min-h-[calc(100vh-80px)]" /* Added block w-full and min-h */
+        className="relative pt-24 pb-16 sm:pb-24 lg:pb-32 font-rob text-gray-200 block w-full min-h-[calc(100vh-80px)]"
       >
         <motion.div
-          className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 text-center block w-full" /* Added block w-full */
+          className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 text-center block w-full"
           initial="hidden"
           whileInView="visible"
           variants={sectionVariants}
@@ -249,7 +150,7 @@ export default function PricingPage() {
                   href={tier.href}
                   aria-describedby={tier.id}
                   className={`mt-8 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2
-                  ${tier.mostPopular
+                    ${tier.mostPopular
                       ? 'bg-indigo-600 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline-indigo-600'
                       : 'text-indigo-400 ring-1 ring-inset ring-indigo-400 hover:ring-indigo-300 focus-visible:outline-indigo-400'
                     }`}
@@ -261,7 +162,8 @@ export default function PricingPage() {
           </div>
         </motion.div>
       </section>
-      <BackToTopButton />
+      {/* BackToTopButton is now used directly */}
+      <BackToTop/>
     </div>
   );
 }

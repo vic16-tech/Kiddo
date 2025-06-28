@@ -1,21 +1,20 @@
-import React, { useState } from 'react'; // Keep useState for mobile menu
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 // Import social media icons
 import { FaInstagram, FaLinkedinIn, FaFacebookF } from 'react-icons/fa';
-import { Dialog, DialogPanel } from '@headlessui/react'; // For mobile menu dialog
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'; // For mobile menu icons
-import { Link } from 'react-router-dom'; // Keep Link for navigation outside header
-import BackToTop
- from '../components/BackToTop'; // Ensure this path is correct
+import { Dialog, DialogPanel } from '@headlessui/react';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { Link } from 'react-router-dom';
+import BackToTop from '../components/BackToTop'; // Corrected import path and name
 import team from "/team.jpg"; // Background image for the Team page
 
-// IMAGE CONFIGURATION for logos in the header of the Team page (consistent with About page)
+// IMAGE CONFIGURATION for logos in the header of the Team page
 const IMAGE_CONFIG = {
   companyLogo: "https://placehold.co/100x32/1E293B/E2E8F0?text=KIDDO", // Kiddo logo
   mobileLogo: "https://placehold.co/100x32/1E293B/E2E8F0?text=KIDDO", // Kiddo logo for mobile dialog
 };
 
-// Navigation links for the header (consistent with About page)
+// Navigation links for the header
 const navigation = [
   { name: 'Home', href: '/' },
   { name: 'Learning Buddies', href: '/learning-buddies' },
@@ -167,7 +166,7 @@ const FALLBACK_IMAGE_URL = "https://placehold.co/150x150/6B7280/FFFFFF?text=No+I
 const BACKGROUND_FALLBACK_URL = "https://placehold.co/1920x1080/4B5563/FFFFFF?text=Background+Not+Found";
 
 
-export default function Team() { // Renamed from Team to TeamPage for consistency with other page components
+export default function TeamPage() { // Renamed from Team to TeamPage for consistency
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const sectionVariants = {
@@ -274,7 +273,7 @@ export default function Team() { // Renamed from Team to TeamPage for consistenc
       </motion.header>
 
       {/* Main Team Content with Background Illustration */}
-      <div className="relative pt-32 pb-16 sm:pb-24 lg:pb-32 font-rob min-h-screen block w-full"> {/* Added block w-full */}
+      <div className="relative pt-32 pb-16 sm:pb-24 lg:pb-32 font-rob min-h-screen block w-full"> {/* Added block w-full and pt-32 for offset */}
         {/* Background Illustration Container */}
         <div className="absolute inset-0 z-0">
           <img
@@ -288,7 +287,7 @@ export default function Team() { // Renamed from Team to TeamPage for consistenc
         </div>
 
         <motion.div
-          className="mx-auto grid max-w-7xl gap-y-16 gap-x-8 px-6 lg:px-8 xl:grid-cols-3 relative z-10 block w-full" /* Added block w-full */
+          className="mx-auto grid max-w-7xl gap-y-16 gap-x-8 px-6 lg:px-8 xl:grid-cols-3 relative z-10 block w-full"
           initial="hidden"
           whileInView="visible"
           variants={sectionVariants}
