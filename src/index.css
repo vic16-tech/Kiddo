@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: Roboto ;
+    src: url("./assets/RobotoMono-ExtraLight.ttf");
+}
+
+@theme{
+    --font-rob:"Roboto";
+    --breakpoint-sm:320px;
+    --breakpoint-xs:460px;
+    --breakpoint-md:768px;
+    --breakpoint-lg:1024px;
+    --breakpoint-xl:1280px;
+    }
+
