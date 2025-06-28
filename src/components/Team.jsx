@@ -5,7 +5,8 @@ import { FaInstagram, FaLinkedinIn, FaFacebookF } from 'react-icons/fa';
 import { Dialog, DialogPanel } from '@headlessui/react'; // For mobile menu dialog
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'; // For mobile menu icons
 import { Link } from 'react-router-dom'; // Keep Link for navigation outside header
-import BackToTop from '../components/BackToTop'; // Ensure this path is correct
+import BackToTop
+ from '../components/BackToTop'; // Ensure this path is correct
 import team from "/team.jpg"; // Background image for the Team page
 
 // IMAGE CONFIGURATION for logos in the header of the Team page (consistent with About page)
