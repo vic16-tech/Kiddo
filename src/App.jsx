@@ -11,7 +11,7 @@ import Pricing from "./pages/Pricing.jsx"
 import Team from './components/Team.jsx';
 import LearningBuddies from './pages/LearningBuddies.jsx';
 import LoginPage from './pages/Login.jsx';
-import SignupPage from './pages/SignupPage.jsx'; // New import for SignupPage
+import SignUp from './pages/SignUpPage.jsx'; // New import for SignupPage
 import ForgotPasswordPage from './pages/ForgotPasswordPage.jsx'; // New import for ForgotPasswordPage
 
 // This component groups all the sections that should appear ONLY on the home page ('/')
@@ -39,7 +39,7 @@ export default function App() {
           <Route path='/learning-buddies' element={<LearningBuddies/>}/>
           <Route path="/about" element={<About />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/signup" element={<SignupPage />} /> {/* New route for signup */}
+          <Route path="/signup" element={<SignUp/>} /> {/* New route for signup */}
           <Route path="/forgot-password" element={<ForgotPasswordPage />} /> {/* New route for forgot password */}
         </Routes>
 
