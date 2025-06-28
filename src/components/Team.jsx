@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'; // Keep useState for mobile menu
 import { motion } from 'framer-motion';
 // Import social media icons
 import { FaInstagram, FaLinkedinIn, FaFacebookF } from 'react-icons/fa';
-import { Dialog, DialogPanel } from '@headlessui/react';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { Link } from 'react-router-dom';
-import team from "/team.jpg"
+import { Dialog, DialogPanel } from '@headlessui/react'; // For mobile menu dialog
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'; // For mobile menu icons
+import { Link } from 'react-router-dom'; // Keep Link for navigation outside header
+import BackToTop from '../components/BackToTop'; // Ensure this path is correct
+import team from "/team.jpg"; // Background image for the Team page
 
 // IMAGE CONFIGURATION for logos in the header of the Team page (consistent with About page)
 const IMAGE_CONFIG = {
@@ -160,7 +161,12 @@ const people = [
   },
 ];
 
-export default function Team() {
+// Fallback image URLs for broken images
+const FALLBACK_IMAGE_URL = "https://placehold.co/150x150/6B7280/FFFFFF?text=No+Image";
+const BACKGROUND_FALLBACK_URL = "https://placehold.co/1920x1080/4B5563/FFFFFF?text=Background+Not+Found";
+
+
+export default function Team() { // Renamed from Team to TeamPage for consistency with other page components
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const sectionVariants = {
@@ -175,7 +181,7 @@ export default function Team() {
 
   return (
     <div className="bg-gray-900 min-h-screen font-rob overflow-x-hidden">
-      {/* Fixed Header (Copied from About.jsx for uniformity) */}
+      {/* Fixed Header */}
       <motion.header
         className="fixed inset-x-0 top-0 z-50 bg-white/80 backdrop-blur-sm shadow-sm"
         initial={{ opacity: 0, y: -50 }}
@@ -211,9 +217,9 @@ export default function Team() {
             ))}
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a href="#" className="text-sm font-semibold leading-6 text-gray-900 hover:text-indigo-600 transition-colors duration-200">
+            <Link to="/login" className="text-sm font-semibold leading-6 text-gray-900 hover:text-indigo-600 transition-colors duration-200">
               Kiddo Login <span aria-hidden="true">→</span>
-            </a>
+            </Link>
           </div>
         </nav>
         <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
@@ -252,12 +258,13 @@ export default function Team() {
                   ))}
                 </div>
                 <div className="py-6">
-                  <a
-                    href="#"
+                  <Link
+                    to="/login"
+                    onClick={() => setMobileMenuOpen(false)}
                     className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                   >
                     Kiddo Login
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -266,20 +273,21 @@ export default function Team() {
       </motion.header>
 
       {/* Main Team Content with Background Illustration */}
-      <div className="relative pt-32 pb-16 sm:pb-24 lg:pb-32 font-rob min-h-screen">
+      <div className="relative pt-32 pb-16 sm:pb-24 lg:pb-32 font-rob min-h-screen block w-full"> {/* Added block w-full */}
         {/* Background Illustration Container */}
         <div className="absolute inset-0 z-0">
           <img
             src={team}
             alt="Team Illustration Background"
             className="w-full h-full object-cover opacity-30" // Adjust opacity as needed
+            onError={(e) => { e.target.onerror = null; e.target.src = BACKGROUND_FALLBACK_URL; }}
           />
           {/* Overlay for text readability */}
           <div className="absolute inset-0 bg-gray-900/70"></div> {/* Dark overlay */}
         </div>
 
         <motion.div
-          className="mx-auto grid max-w-7xl gap-y-16 gap-x-8 px-6 lg:px-8 xl:grid-cols-3 relative z-10" // z-10 to bring content above background
+          className="mx-auto grid max-w-7xl gap-y-16 gap-x-8 px-6 lg:px-8 xl:grid-cols-3 relative z-10 block w-full" /* Added block w-full */
           initial="hidden"
           whileInView="visible"
           variants={sectionVariants}
@@ -310,11 +318,12 @@ export default function Team() {
                 transition={{ delay: 0.1 * index + 0.3 }}
                 viewport={{ once: true, amount: 0.3 }}
               >
-                <div className="flex flex-col sm:flex-row items-center sm:items-start gap-x-6 p-4 bg-gray-800/60 rounded-xl shadow-md border border-indigo-600/50 text-center sm:text-left backdrop-blur-sm"> {/* Added backdrop-blur-sm */}
+                <div className="flex flex-col sm:flex-row items-center sm:items-start gap-x-6 p-4 bg-gray-800/60 rounded-xl shadow-md border border-indigo-600/50 text-center sm:text-left backdrop-blur-sm">
                   <img
                     alt={person.name}
                     src={person.imageUrl}
                     className="size-16 rounded-full object-cover border-2 border-yellow-400 mb-4 sm:mb-0"
+                    onError={(e) => { e.target.onerror = null; e.target.src = FALLBACK_IMAGE_URL; }}
                   />
                   <div className="flex flex-col items-center sm:items-start">
                     <h3 className="text-base font-semibold leading-7 tracking-tight text-white">{person.name}</h3>
@@ -343,6 +352,7 @@ export default function Team() {
           </ul>
         </motion.div>
       </div>
+      <BackToTop/>
     </div>
   );
 }

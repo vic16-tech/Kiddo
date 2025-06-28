@@ -1,25 +1,25 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import { Dialog, DialogPanel } from '@headlessui/react';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { Link } from 'react-router-dom'; // Keep Link for navigation outside header
+import { Dialog, DialogPanel } from '@headlessui/react'; // For mobile menu dialog
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'; // For mobile menu icons
 import { CheckIcon } from '@heroicons/react/20/solid'; // For feature list checkmarks
-import BackToTop from '../components/BackToTop'; // Ensure this path is correct
+import BackToTopButton from '../components/BackToTopButton'; // Ensure this path is correct
 
-// IMAGE CONFIGURATION for logos in the header (consistent with other pages)
+// IMAGE CONFIGURATION for logos and the background illustration
 const IMAGE_CONFIG = {
-  companyLogo: "https://placehold.co/100x32/1E293B/E2E8F0?text=KIDDO", // Kiddo logo
+  companyLogo: "https://placehold.co/100x32/1E293B/E2E8F0?text=KIDDO", // Kiddo logo for header
   mobileLogo: "https://placehold.co/100x32/1E293B/E2E8F0?text=KIDDO", // Kiddo logo for mobile dialog
-  // physicalProductsBackground will no longer be here as it's for the separate Products page
 };
 
-// Navigation links for the header (consistent with other pages)
+// Navigation links (consistent with other pages)
 const navigation = [
   { name: 'Home', href: '/' },
   { name: 'Learning Buddies', href: '/learning-buddies' },
-  { name: 'About Us', href: '/about' },
+  { name: 'Pricing', href: '/pricing' },
   { name: 'Our Track Record', href: '/our-track-record' },
-  { name: 'Team', href: '/team' }, // Added link to Team page
+  { name: 'About Us', href: '/about' },
+  { name: 'Team', href: '/team' }, // Link to the Team page
 ];
 
 const pricingTiers = [
@@ -73,8 +73,8 @@ const pricingTiers = [
   },
 ];
 
-export default function PricingPage() { // Component name reverted to PricingPage
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+export default function PricingPage() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false); // State for mobile menu
 
   // Framer Motion variants for general section animation
   const sectionVariants = {
@@ -187,36 +187,37 @@ export default function PricingPage() { // Component name reverted to PricingPag
         </Dialog>
       </motion.header>
 
-      {/* Main Pricing Section */}
-      <section className="relative pt-32 pb-16 sm:pb-24 lg:pb-32 font-rob text-gray-200">
+      {/* Main Content Area (Pricing Section) */}
+      <section
+        className="relative pt-24 pb-16 sm:pb-24 lg:pb-32 font-rob text-gray-200 block w-full min-h-[calc(100vh-80px)]" /* Added block w-full and min-h */
+      >
         <motion.div
-          className="mx-auto max-w-7xl px-6 lg:px-8"
+          className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 text-center block w-full" /* Added block w-full */
           initial="hidden"
           whileInView="visible"
           variants={sectionVariants}
           viewport={{ once: true, amount: 0.3 }}
         >
-          <div className="mx-auto max-w-4xl text-center">
-            <motion.h2
-              className="text-4xl font-bold tracking-tight text-cyan-400 sm:text-6xl drop-shadow-md"
-              variants={textVariants}
-            >
-              Pricing that grows with your little one's learning
-            </motion.h2>
-            <motion.p
-              className="mt-6 text-lg leading-8 text-gray-300"
-              variants={textVariants}
-              transition={{ delay: 0.2 }}
-            >
-              Choose an affordable plan that's packed with features for engaging your child, fostering creativity, and building a strong foundation.
-            </motion.p>
-          </div>
+          <motion.h2
+            className="text-4xl font-bold tracking-tight text-cyan-400 sm:text-6xl drop-shadow-md"
+            variants={textVariants}
+          >
+            Pricing that grows with your little one's learning
+          </motion.h2>
+          <motion.p
+            className="mt-6 text-lg leading-8 text-gray-300"
+            variants={textVariants}
+            transition={{ delay: 0.2 }}
+          >
+            Choose an affordable plan that's packed with features for engaging your child, fostering creativity, and building a strong foundation.
+          </motion.p>
 
           <div className="isolate mx-auto mt-16 grid max-w-md grid-cols-1 gap-y-8 sm:mt-20 lg:max-w-none lg:grid-cols-3 lg:gap-x-8">
             {pricingTiers.map((tier, index) => (
               <motion.div
                 key={tier.id}
-                className="flex flex-col justify-between rounded-3xl bg-gray-800 p-8 shadow-xl ring-1 ring-gray-900/10 sm:p-10"
+                className="flex flex-col justify-between rounded-3xl bg-gray-800 p-8 shadow-xl ring-1 ring-gray-900/10 sm:p-10
+                           transform hover:scale-103 hover:shadow-2xl hover:border-purple-400 transition-all duration-300"
                 variants={cardVariants}
                 initial="hidden"
                 whileInView="visible"
@@ -260,9 +261,7 @@ export default function PricingPage() { // Component name reverted to PricingPag
           </div>
         </motion.div>
       </section>
-
-      {/* Back to Top Button */}
-      <BackToTop/>
+      <BackToTopButton />
     </div>
   );
 }
