@@ -1,26 +1,9 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Dialog, DialogPanel } from '@headlessui/react';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { CheckIcon } from '@heroicons/react/20/solid'; // For feature list checkmarks
+import Header from '../components/Header'; // Import the global Header
 import BackToTop from '../components/BackToTop'; // Ensure this path is correct
-
-// IMAGE CONFIGURATION for logos in the header (consistent with other pages)
-const IMAGE_CONFIG = {
-  companyLogo: "https://placehold.co/100x32/1E293B/E2E8F0?text=KIDDO", // Kiddo logo
-  mobileLogo: "https://placehold.co/100x32/1E293B/E2E8F0?text=KIDDO", // Kiddo logo for mobile dialog
-  // physicalProductsBackground will no longer be here as it's for the separate Products page
-};
-
-// Navigation links for the header (consistent with other pages)
-const navigation = [
-  { name: 'Home', href: '/' },
-  { name: 'Learning Buddies', href: '/learning-buddies' },
-  { name: 'About Us', href: '/about' },
-  { name: 'Our Track Record', href: '/our-track-record' },
-  { name: 'Team', href: '/team' }, // Added link to Team page
-];
 
 const pricingTiers = [
   {
@@ -73,9 +56,7 @@ const pricingTiers = [
   },
 ];
 
-export default function PricingPage() { // Component name reverted to PricingPage
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
+export default function PricingPage() {
   // Framer Motion variants for general section animation
   const sectionVariants = {
     hidden: { opacity: 0, y: 50 },
@@ -96,99 +77,10 @@ export default function PricingPage() { // Component name reverted to PricingPag
 
   return (
     <div className="bg-gray-900 min-h-screen font-rob overflow-x-hidden">
-      {/* Fixed Header */}
-      <motion.header
-        className="fixed inset-x-0 top-0 z-50 bg-white/80 backdrop-blur-sm shadow-sm"
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-      >
-        <nav aria-label="Global" className="flex items-center justify-between p-6 lg:px-8">
-          <div className="flex lg:flex-1">
-            <Link to="/" className="-m-1.5 p-1.5">
-              <span className="sr-only">Kiddo Skills</span>
-              <img
-                alt="Kiddo Skills Logo"
-                src={IMAGE_CONFIG.companyLogo}
-                className="h-8 w-auto"
-              />
-            </Link>
-          </div>
-          <div className="flex lg:hidden">
-            <button
-              type="button"
-              onClick={() => setMobileMenuOpen(true)}
-              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-            >
-              <span className="sr-only">Open Kiddo menu</span>
-              <Bars3Icon aria-hidden="true" className="size-6" />
-            </button>
-          </div>
-          <div className="hidden lg:flex lg:gap-x-12">
-            {navigation.map((item) => (
-              <Link key={item.name} to={item.href} className="text-sm font-semibold leading-6 text-gray-900 hover:text-indigo-600 transition-colors duration-200">
-                {item.name}
-              </Link>
-            ))}
-          </div>
-          <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <Link to="/login" className="text-sm font-semibold leading-6 text-gray-900 hover:text-indigo-600 transition-colors duration-200">
-              Kiddo Login <span aria-hidden="true">→</span>
-            </Link>
-          </div>
-        </nav>
-        <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
-          <div className="fixed inset-0 z-50 bg-gray-900/70" onClick={() => setMobileMenuOpen(false)} />
-          <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
-            <div className="flex items-center justify-between">
-              <Link to="/" className="-m-1.5 p-1.5">
-                <span className="sr-only">Kiddo Skills</span>
-                <img
-                  alt="Kiddo Skills Logo"
-                  src={IMAGE_CONFIG.mobileLogo}
-                  className="h-8 w-auto"
-                />
-              </Link>
-              <button
-                type="button"
-                onClick={() => setMobileMenuOpen(false)}
-                className="-m-2.5 rounded-md p-2.5 text-gray-700"
-              >
-                <span className="sr-only">Close Kiddo menu</span>
-                <XMarkIcon aria-hidden="true" className="size-6" />
-              </button>
-            </div>
-            <div className="mt-6 flow-root">
-              <div className="-my-6 divide-y divide-gray-500/10">
-                <div className="space-y-2 py-6">
-                  {navigation.map((item) => (
-                    <Link
-                      key={item.name}
-                      to={item.href}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                    >
-                      {item.name}
-                    </Link>
-                  ))}
-                </div>
-                <div className="py-6">
-                  <Link
-                    to="/login"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                  >
-                    Kiddo Login
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </DialogPanel>
-        </Dialog>
-      </motion.header>
+      <Header /> {/* Render the global Header component */}
 
       {/* Main Pricing Section */}
-      <section className="relative pt-32 pb-16 sm:pb-24 lg:pb-32 font-rob text-gray-200">
+      <section className="relative pt-24 pb-16 sm:pb-24 lg:pb-32 font-rob text-gray-200"> {/* Added pt-24 */}
         <motion.div
           className="mx-auto max-w-7xl px-6 lg:px-8"
           initial="hidden"
@@ -261,7 +153,6 @@ export default function PricingPage() { // Component name reverted to PricingPag
         </motion.div>
       </section>
 
-      {/* Back to Top Button */}
       <BackToTop/>
     </div>
   );
