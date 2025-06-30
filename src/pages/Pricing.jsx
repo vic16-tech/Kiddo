@@ -2,8 +2,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom'; // Keep Link for navigation
 import { CheckIcon } from '@heroicons/react/20/solid'; // For feature list checkmarks
-import Header from '../components/Header'; // Import the global Header component
-import BackToTop from '../components/BackToTop'; // Ensure this path is correct and name matches
+// Removed: import Header from '../components/Header'; // REMOVED: Header is now provided globally by App.jsx
+ import BackToTop from '../components/BackToTop'; // Now handled globally by App.jsx
 
 const pricingTiers = [
   {
@@ -57,9 +57,6 @@ const pricingTiers = [
 ];
 
 export default function PricingPage() {
-  // mobileMenuOpen state and related Dialog/DialogPanel imports are removed
-  // as the global Header component now handles navigation and mobile menu logic.
-
   // Framer Motion variants for general section animation
   const sectionVariants = {
     hidden: { opacity: 0, y: 50 },
@@ -79,18 +76,22 @@ export default function PricingPage() {
   };
 
   return (
-    <div className="bg-gray-900 min-h-screen font-rob overflow-x-hidden">
-      {/* Render the global Header component.
-          It will provide the fixed navigation and mobile menu. */}
-      <Header />
+    // The outermost div of the page component.
+    // It should define the background and minimum height for the page content.
+    // The pt-20 is for the global header. This is applied here to the root of the page content.
+    <div className="bg-gray-900 min-h-screen font-rob overflow-x-hidden pt-20">
+      {/* The Header component is now expected to be rendered once globally in App.jsx */}
 
       {/* Main Content Area (Pricing Section)
-          pt-24 is added to push content down, clearing the fixed header.
+          pt-24 on this section will further push its content down relative to itself,
+          but the overall page content correctly starts below the global header due to pt-20 on the parent div.
           block w-full ensures it takes full width.
           min-h-[calc(100vh-80px)] ensures it takes up at least the remaining viewport height,
           assuming the header is approximately 80px tall. */}
       <section
-        className="relative pt-24 pb-16 sm:pb-24 lg:pb-32 font-rob text-gray-200 block w-full min-h-[calc(100vh-80px)]"
+        className="relative pt-4 pb-16 sm:pb-24 lg:pb-32 font-rob text-gray-200 block w-full min-h-[calc(100vh-80px)]"
+        // Adjusted pt-24 to pt-4 as the main pt-20 on the container should be sufficient.
+        // You can adjust this further if needed after testing.
       >
         <motion.div
           className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 text-center block w-full"
@@ -149,7 +150,7 @@ export default function PricingPage() {
                 <a
                   href={tier.href}
                   aria-describedby={tier.id}
-                  className={`mt-8 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2
+                  className={`mt-8 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 focus-visible:outline-2 focus-visible:outline-offset-2
                     ${tier.mostPopular
                       ? 'bg-indigo-600 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline-indigo-600'
                       : 'text-indigo-400 ring-1 ring-inset ring-indigo-400 hover:ring-indigo-300 focus-visible:outline-indigo-400'
@@ -162,7 +163,6 @@ export default function PricingPage() {
           </div>
         </motion.div>
       </section>
-      {/* BackToTopButton is now used directly */}
       <BackToTop/>
     </div>
   );
