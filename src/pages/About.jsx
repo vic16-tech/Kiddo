@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom'; // Ensure Link is imported for navigation
-import { Dialog, DialogPanel } from '@headlessui/react';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+// import { Dialog, DialogPanel } from '@headlessui/react';
+// import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useInView } from 'react-intersection-observer';
 import { FaLightbulb, FaSmile, FaHandshake, FaShieldAlt, FaRocket, FaGlobe } from 'react-icons/fa';
 import Header from "../components/Header"
@@ -19,17 +19,17 @@ const ABOUT_IMAGE_CONFIG = {
 
 // IMAGE CONFIGURATION for logos in the header of the About page
 const IMAGE_CONFIG = {
-  companyLogo: "https://placehold.co/100x32/1E293B/E2E8F0?text=KIDDO", // Kiddo logo
-  mobileLogo: "https://placehold.co/100x32/1E293B/E2E8F0?text=KIDDO", // Kiddo logo for mobile dialog
+  companyLogo: "/Logo.jpg", // Kiddo logo
+  mobileLogo: "/Logo.jpg", // Kiddo logo for mobile dialog
 };
 
 // Navigation links for the header on the About page - UPDATED WITH ROUTES
-const navigation = [
-  { name: 'Home', href: '/' }, // Link back to home
-  { name: 'Learning Buddies', href: '/learning-buddies' }, // New route
-  { name: 'Pricing', href: '/pricing' }, // New route
-  { name: 'Our Track Record', href: '/our-track-record' }, // New route
-];
+// const navigation = [
+//   { name: 'Home', href: '/' }, // Link back to home
+//   { name: 'Learning Buddies', href: '/learning-buddies' }, // New route
+//   { name: 'Pricing', href: '/pricing' }, // New route
+//   { name: 'Our Track Record', href: '/our-track-record' }, // New route
+// ];
 
 // --- Re-usable useCountUp Hook for Stats Section ---
 const useCountUp = (end, duration = 2000, decimalPlaces = 0) => {
@@ -123,7 +123,7 @@ const StatItem = ({ stat }) => {
 
 
 export default function About() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  // const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Framer Motion variants for general section animation
   const sectionVariants = {
