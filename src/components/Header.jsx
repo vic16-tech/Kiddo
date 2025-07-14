@@ -6,8 +6,8 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 
 // IMAGE CONFIGURATION for logos
 const IMAGE_CONFIG = {
-  companyLogo: "https://placehold.co/100x32/1E293B/E2E8F0?text=KIDDO", // Kiddo logo
-  mobileLogo: "https://placehold.co/100x32/1E293B/E2E8F0?text=KIDDO", // Kiddo logo for mobile dialog
+  companyLogo: "/Logo.jpg", // Kiddo logo
+  mobileLogo: "/Logo.jpg", // Kiddo logo for mobile dialog
 };
 
 // Navigation links for the header
@@ -15,7 +15,7 @@ const navigation = [
   { name: 'About Us', href: '/about' },
   { name: 'Learning Buddies', href: '/learning-buddies' }, // Direct route
   { name: 'Pricing', href: '/pricing' }, // Direct route to pricing page
-  { name: 'Our Track Record', href: '/our-track-record' }, // Direct route to stats page
+  { name: 'Our Track Record', href: '/track-record' }, // Direct route to stats page
 ];
 
 export default function Header() {
@@ -28,7 +28,7 @@ export default function Header() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
     >
-      <nav aria-label="Global" className="flex items-center justify-between p-6 lg:px-8">
+      <nav aria-label="Global" className="flex items-center  font-rob justify-between p-6 lg:px-8">
         <div className="flex lg:flex-1">
           <Link to="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Kiddo Skills</span>
@@ -39,7 +39,7 @@ export default function Header() {
             />
           </Link>
         </div>
-        <div className="flex lg:hidden">
+        <div className="flex lg:hidden font-rob">
           <button
             type="button"
             onClick={() => setMobileMenuOpen(true)}
@@ -49,9 +49,9 @@ export default function Header() {
             <Bars3Icon aria-hidden="true" className="size-6" />
           </button>
         </div>
-        <div className="hidden lg:flex lg:gap-x-12">
+        <div className="hidden lg:flex lg:gap-x-12 font-rob">
           {navigation.map((item) => (
-            <Link key={item.name} to={item.href} className="text-sm font-semibold leading-6 text-cyan-400 hover:text-cyan-300">
+            <Link key={item.name} to={item.href} className="text-sm font-semibold font-rob leading-6 text-cyan-400 hover:text-cyan-300">
               {item.name}
             </Link>
           ))}

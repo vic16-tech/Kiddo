@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 // Import social media icons
 import { FaInstagram, FaLinkedinIn, FaFacebookF } from 'react-icons/fa';
-import { Dialog, DialogPanel } from '@headlessui/react';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { Link } from 'react-router-dom';
+// import { Dialog, DialogPanel } from '@headlessui/react';
+// import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+// import { Link } from 'react-router-dom';
 import BackToTop from '../components/BackToTop'; // Corrected import path and name
 import team from "/team.jpg"; // Background image for the Team page
+import Header from "../components/Header";
+import Mission from "../pages/Mission"
 
 // IMAGE CONFIGURATION for logos in the header of the Team page
 const IMAGE_CONFIG = {
@@ -14,14 +15,14 @@ const IMAGE_CONFIG = {
   mobileLogo: "https://placehold.co/100x32/1E293B/E2E8F0?text=KIDDO", // Kiddo logo for mobile dialog
 };
 
-// Navigation links for the header
-const navigation = [
-  { name: 'Home', href: '/' },
-  { name: 'Learning Buddies', href: '/learning-buddies' },
-  { name: 'Pricing', href: '/pricing' },
-  { name: 'Our Track Record', href: '/our-track-record' },
-  { name: 'About Us', href: '/about' },
-];
+// // Navigation links for the header
+// const navigation = [
+//   { name: 'Home', href: '/' },
+//   { name: 'Learning Buddies', href: '/learning-buddies' },
+//   { name: 'Pricing', href: '/pricing' },
+//   { name: 'Our Track Record', href: '/our-track-record' },
+//   { name: 'About Us', href: '/about' },
+// ];
 
 const people = [
   {
@@ -166,8 +167,8 @@ const FALLBACK_IMAGE_URL = "https://placehold.co/150x150/6B7280/FFFFFF?text=No+I
 const BACKGROUND_FALLBACK_URL = "https://placehold.co/1920x1080/4B5563/FFFFFF?text=Background+Not+Found";
 
 
-export default function TeamPage() { // Renamed from Team to TeamPage for consistency
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+export default function TeamPage() { 
+  // const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const sectionVariants = {
     hidden: { opacity: 0, y: 50 },
@@ -182,98 +183,10 @@ export default function TeamPage() { // Renamed from Team to TeamPage for consis
   return (
     <div className="bg-gray-900 min-h-screen font-rob overflow-x-hidden">
       {/* Fixed Header */}
-      <motion.header
-        className="fixed inset-x-0 top-0 z-50 bg-white/80 backdrop-blur-sm shadow-sm"
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-      >
-        <nav aria-label="Global" className="flex items-center justify-between p-6 lg:px-8">
-          <div className="flex lg:flex-1">
-            <Link to="/" className="-m-1.5 p-1.5">
-              <span className="sr-only">Kiddo Skills</span>
-              <img
-                alt="Kiddo Skills Logo"
-                src={IMAGE_CONFIG.companyLogo}
-                className="h-8 w-auto"
-              />
-            </Link>
-          </div>
-          <div className="flex lg:hidden">
-            <button
-              type="button"
-              onClick={() => setMobileMenuOpen(true)}
-              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-            >
-              <span className="sr-only">Open Kiddo menu</span>
-              <Bars3Icon aria-hidden="true" className="size-6" />
-            </button>
-          </div>
-          <div className="hidden lg:flex lg:gap-x-12">
-            {navigation.map((item) => (
-              <Link key={item.name} to={item.href} className="text-sm font-semibold leading-6 text-gray-900 hover:text-indigo-600 transition-colors duration-200">
-                {item.name}
-              </Link>
-            ))}
-          </div>
-          <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <Link to="/login" className="text-sm font-semibold leading-6 text-gray-900 hover:text-indigo-600 transition-colors duration-200">
-              Kiddo Login <span aria-hidden="true">→</span>
-            </Link>
-          </div>
-        </nav>
-        <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
-          <div className="fixed inset-0 z-50 bg-gray-900/70" onClick={() => setMobileMenuOpen(false)} />
-          <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
-            <div className="flex items-center justify-between">
-              <Link to="/" className="-m-1.5 p-1.5">
-                <span className="sr-only">Kiddo Skills</span>
-                <img
-                  alt="Kiddo Skills Logo"
-                  src={IMAGE_CONFIG.mobileLogo}
-                  className="h-8 w-auto"
-                />
-              </Link>
-              <button
-                type="button"
-                onClick={() => setMobileMenuOpen(false)}
-                className="-m-2.5 rounded-md p-2.5 text-gray-700"
-              >
-                <span className="sr-only">Close Kiddo menu</span>
-                <XMarkIcon aria-hidden="true" className="size-6" />
-              </button>
-            </div>
-            <div className="mt-6 flow-root">
-              <div className="-my-6 divide-y divide-gray-500/10">
-                <div className="space-y-2 py-6">
-                  {navigation.map((item) => (
-                    <Link
-                      key={item.name}
-                      to={item.href}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                    >
-                      {item.name}
-                    </Link>
-                  ))}
-                </div>
-                <div className="py-6">
-                  <Link
-                    to="/login"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                  >
-                    Kiddo Login
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </DialogPanel>
-        </Dialog>
-      </motion.header>
+     <Header/>
 
       {/* Main Team Content with Background Illustration */}
-      <div className="relative pt-32 pb-16 sm:pb-24 lg:pb-32 font-rob min-h-screen block w-full"> {/* Added block w-full and pt-32 for offset */}
+      <div className="relative pt-42 pb-16 sm:pb-24 xs:pt-52 lg:pb-32  font-rob min-h-screen block w-full"> {/* Added block w-full and pt-32 for offset */}
         {/* Background Illustration Container */}
         <div className="absolute inset-0 z-0">
           <img
@@ -287,13 +200,13 @@ export default function TeamPage() { // Renamed from Team to TeamPage for consis
         </div>
 
         <motion.div
-          className="mx-auto grid max-w-7xl gap-y-16 gap-x-8 px-6 lg:px-8 xl:grid-cols-3 relative z-10 block w-full"
+          className="mx-auto grid max-w-7xl gap-y-16 gap-x-8 px-6 lg:px-8 xl:grid-cols-3 relative z-10  w-full"
           initial="hidden"
           whileInView="visible"
           variants={sectionVariants}
           viewport={{ once: true, amount: 0.3 }}
         >
-          <div className="max-w-xl text-center xl:text-left">
+          <div className="max-w-xl lg:text-center xl:text-left">
             <motion.h2
               className="text-3xl font-semibold tracking-tight text-cyan-400 sm:text-4xl drop-shadow-md"
               variants={textVariants}

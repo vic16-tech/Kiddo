@@ -1,16 +1,17 @@
-import { useState, useEffect } from 'react'
-import { Dialog, DialogPanel } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+// import { useState, useEffect } from 'react'
+// import { Dialog, DialogPanel } from '@headlessui/react'
+// import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { motion } from 'framer-motion';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'; // Import router components
 import BackToTop from '../components/BackToTop';
+import  Header from "../components/Header"
 
 // Tailwind CSS is expected to be correctly linked via "../index.css"
 import "../index.css"
 
 const IMAGE_CONFIG = {
-  companyLogo: "https://placehold.co/100x32/1E293B/E2E8F0?text=KIDDO", // Kiddo logo
-  mobileLogo: "https://placehold.co/100x32/1E293B/E2E8F0?text=KIDDO", // Kiddo logo for mobile dialog
+  companyLogo: "/Logo.jpg", // Kiddo logo
+  mobileLogo: "/Logo.jpg", // Kiddo logo for mobile dialog
   heroImage1: "/pic.jpg", // Placeholder image 1 for collage
   heroImage2: "/fi.jpg", // Placeholder image 2 for collage
   heroImage3: "/4437833.jpg", // Placeholder image 3 for collage
@@ -18,15 +19,15 @@ const IMAGE_CONFIG = {
 
 
 // Navigation links - UPDATED with correct React Router paths
-const navigation = [
-  { name: 'About Us', href: '/about' },
-  { name: 'Learning Buddies', href: '/learning-buddies' }, // Updated route
-  { name: 'Pricing', href: '/pricing' }, // Updated route
-  { name: 'Our Track Record', href: '/our-track-record' }, // Updated route
-];
+// const navigation = [
+//   { name: 'About Us', href: '/about' },
+//   { name: 'Learning Buddies', href: '/learning-buddies' }, // Updated route
+//   { name: 'Pricing', href: '/pricing' }, // Updated route
+//   { name: 'Our Track Record', href: '/track-record' }, // Updated route
+// ];
 
 function Home() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  // const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Hero content data - UPDATED to Kiddo content (static, not rotating)
   const heroMainTitle = "Ignite Curiosity, Build Super Skills!";
@@ -70,100 +71,7 @@ function Home() {
   return (
     <div className="bg-gray-50 min-h-screen font-rob overflow-x-hidden">
       {/* Fixed Header */}
-      <motion.header
-        className="fixed inset-x-0 top-0 z-50 bg-white/80 backdrop-blur-sm shadow-sm"
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-      >
-        <nav aria-label="Global" className="flex items-center justify-between p-6 lg:px-8">
-          <div className="flex lg:flex-1">
-            <Link to="/" className="-m-1.5 p-1.5">
-              <span className="sr-only">Kiddo Skills</span>
-              <img
-                alt="Kiddo Skills Logo"
-                src={IMAGE_CONFIG.companyLogo}
-                className="h-8 w-auto"
-              />
-            </Link>
-          </div>
-          {/* Hamburger button: visible on small screens, hidden at lg (1024px) and up */}
-          <div className="flex lg:hidden">
-            <button
-              type="button"
-              onClick={() => setMobileMenuOpen(true)}
-              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-            >
-              <span className="sr-only">Open Kiddo menu</span>
-              <Bars3Icon aria-hidden="true" className="size-6" />
-            </button>
-          </div>
-          {/* Desktop nav links: hidden on small screens, flex at lg (1024px) and up (gap-x-12 for this layout) */}
-          <div className="hidden lg:flex lg:gap-x-12">
-            {navigation.map((item) => (
-              <Link key={item.name} to={item.href} className="text-sm font-semibold leading-6 text-gray-900 hover:text-indigo-600 transition-colors duration-200">
-                {item.name}
-              </Link>
-            ))}
-          </div>
-          <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            {/* Updated href for Kiddo Login */}
-            <Link to="/login" className="text-sm font-semibold leading-6 text-gray-900 hover:text-indigo-600 transition-colors duration-200">
-              Kiddo Login <span aria-hidden="true">→</span>
-            </Link>
-          </div>
-        </nav>
-        {/* Mobile menu dialog */}
-        <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
-          <div className="fixed inset-0 z-50 bg-gray-900/70" onClick={() => setMobileMenuOpen(false)} /> {/* Overlay */}
-          <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
-            <div className="flex items-center justify-between">
-              <Link to="/" className="-m-1.5 p-1.5">
-                <span className="sr-only">Kiddo Skills</span>
-                <img
-                  alt="Kiddo Skills Logo"
-                  src={IMAGE_CONFIG.mobileLogo}
-                  className="h-8 w-auto"
-                />
-              </Link>
-              <button
-                type="button"
-                onClick={() => setMobileMenuOpen(false)}
-                className="-m-2.5 rounded-md p-2.5 text-gray-700"
-              >
-                <span className="sr-only">Close Kiddo menu</span>
-                <XMarkIcon aria-hidden="true" className="size-6" />
-              </button>
-            </div>
-            <div className="mt-6 flow-root">
-              <div className="-my-6 divide-y divide-gray-500/10">
-                <div className="space-y-2 py-6">
-                  {navigation.map((item) => (
-                    <Link
-                      key={item.name}
-                      to={item.href}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                    >
-                      {item.name}
-                    </Link>
-                  ))}
-                </div>
-                <div className="py-6">
-                  {/* Updated href for Kiddo Login in mobile menu */}
-                  <Link
-                    to="/login"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                  >
-                    Kiddo Login
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </DialogPanel>
-        </Dialog>
-      </motion.header>
+            <Header/>
 
       {/* Hero Section Content - UPDATED to Kiddo content, static images */}
       <main className="relative isolate pt-24 pb-16 sm:pt-32 sm:pb-24 lg:pb-32 min-h-screen flex items-center">
@@ -175,7 +83,7 @@ function Home() {
               <div className="hidden sm:mb-8 sm:flex sm:justify-center lg:justify-start">
                 <div className="relative rounded-full px-3 py-1 text-sm/6 text-black font-bold ring-1 ring-lime-400/30 hover:ring-lime-400/50">
                   Spark New Discoveries Daily!{' '}
-                  <a href="#" className="font-semibold text-fuchsia-400 hover:text-fuchsia-300">
+                  <a href="https://x.com/KiddosNG" target='blank' className="font-semibold text-fuchsia-400 hover:text-fuchsia-300">
                     <span aria-hidden="true" className="absolute inset-0" />
                     Explore Updates <span aria-hidden="true">&rarr;</span>
                   </a>
@@ -201,7 +109,7 @@ function Home() {
               </motion.p>
               <div className="mt-10 flex items-center justify-center lg:justify-start gap-x-6">
                 <motion.a
-                  href="#"
+                  href="/pricing"
                   className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                   initial="hidden"
                   animate="visible"
@@ -211,7 +119,7 @@ function Home() {
                   Start Their Adventure!
                 </motion.a>
                 <motion.a
-                  href="#"
+                  href="/our-magic"
                   className="text-sm font-semibold leading-6 text-gray-900 hover:text-indigo-600 transition-colors duration-200"
                   initial="hidden"
                   animate="visible"

@@ -8,8 +8,8 @@ import { FaPaperPlane, FaMagic, FaUserCircle, FaLightbulb, FaCamera, FaImage, Fa
 
 // IMAGE CONFIGURATION for logos in the header (consistent with other pages)
 const IMAGE_CONFIG = {
-  companyLogo: "https://placehold.co/100x32/1E293B/E2E8F0?text=KIDDO",
-  mobileLogo: "https://placehold.co/100x32/1E293B/E2E8F0?text=KIDDO",
+  companyLogo: "/Logo.jpg",
+  mobileLogo: "/Logo.jpg",
 };
 
 // Navigation links for the header (consistent with other pages)

@@ -16,6 +16,10 @@ import LearningBuddies from './pages/LearningBuddies.jsx';
 import LoginPage from './pages/Login.jsx';
 import SignUp from './pages/SignUpPage.jsx'; // Corrected import to match your naming
 import ForgotPasswordPage from './pages/ForgotPasswordPage.jsx';
+import OurTrackRecordPage from './pages/OurTrackRecord.jsx';
+import OurMagicPage from './pages/OurMagicPage.jsx';
+import Mission from "./pages/Mission.jsx"
+import "./index.css"
 
 // This component groups all the sections that should appear ONLY on the home page ('/')
 const HomePageContent = () => {
@@ -48,6 +52,9 @@ export default function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignUp/>} />
           <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+          <Route path="/track-record" element={<OurTrackRecordPage />} />
+          <Route path="/our-magic" element={<OurMagicPage />} />
+          <Route path="/mission" element={<Mission/>} />
         </Routes>
 
         {/* The Footer is placed outside <Routes> so it will render on ALL pages, regardless of the route. */}

@@ -11,7 +11,7 @@ const testimonials = [
     author: "Sarah J.",
     title: "Parent & Educator",
     avatar: "https://placehold.co/150x150/8A2BE2/FFFFFF?text=SJ", // Placeholder for avatar
-    logo: "https://placehold.co/100x32/1E293B/E2E8F0?text=KIDDO+LOGO" // Placeholder for company logo if applicable
+    logo: "/Logo.jpg" // Placeholder for company logo if applicable
   },
   {
     quote: "“My son absolutely loves the coding adventures! He's always excited for his next 'mission.' It's amazing to see him learn complex concepts while having so much fun. Highly recommend!”",

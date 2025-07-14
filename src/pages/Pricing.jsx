@@ -79,7 +79,7 @@ export default function PricingPage() {
     // The outermost div of the page component.
     // It should define the background and minimum height for the page content.
     // The pt-20 is for the global header. This is applied here to the root of the page content.
-    <div className="bg-gray-900 min-h-screen font-rob overflow-x-hidden pt-20">
+    <div className="bg-gray-900 min-h-screen font-rob overflow-x-hidden">
       {/* The Header component is now expected to be rendered once globally in App.jsx */}
 
       {/* Main Content Area (Pricing Section)
@@ -89,7 +89,7 @@ export default function PricingPage() {
           min-h-[calc(100vh-80px)] ensures it takes up at least the remaining viewport height,
           assuming the header is approximately 80px tall. */}
       <section
-        className="relative pt-4 pb-16 sm:pb-24 lg:pb-32 font-rob text-gray-200 block w-full min-h-[calc(100vh-80px)]"
+        className="relative pt-24 pb-16 sm:pb-24 lg:pb-32 font-rob text-gray-200 block w-full min-h-[calc(100vh-80px)]"
         // Adjusted pt-24 to pt-4 as the main pt-20 on the container should be sufficient.
         // You can adjust this further if needed after testing.
       >
