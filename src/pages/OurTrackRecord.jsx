@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useRef, useEffect, useState } from 'react'; // For useCountUp hook
 import BackToTop from '../components/BackToTop'; // Using BackToTopButton for consistency
+import "../index.css"
 
 // IMAGE CONFIGURATION for the hero background image
 const IMAGE_CONFIG = {
