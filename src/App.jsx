@@ -14,7 +14,8 @@ import Pricing from "./pages/Pricing.jsx"
 import Team from './components/Team.jsx';
 import LearningBuddies from './pages/LearningBuddies.jsx';
 import LoginPage from './pages/Login.jsx';
-import SignUp from './pages/SignUpPage.jsx'; // Corrected import to match your naming
+import SignUp from './pages/SignUpPage.jsx';
+import Settings from './pages/Settings.jsx';
 import ForgotPasswordPage from './pages/ForgotPasswordPage.jsx';
 import OurTrackRecordPage from './pages/OurTrackRecord.jsx';
 import OurMagicPage from './pages/OurMagicPage.jsx';
@@ -55,6 +56,7 @@ export default function App() {
           <Route path="/track-record" element={<OurTrackRecordPage />} />
           <Route path="/our-magic" element={<OurMagicPage />} />
           <Route path="/mission" element={<Mission/>} />
+           <Route path="/settings" element={<Settings/>} />
         </Routes>
 
         {/* The Footer is placed outside <Routes> so it will render on ALL pages, regardless of the route. */}

@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useRef, useEffect, useState } from 'react'; // For useCountUp hook
 import BackToTop from '../components/BackToTop'; // Using BackToTopButton for consistency
-import "../index.css"
+import "../index.css" // Ensure this import is correct as per your setup
 
 // IMAGE CONFIGURATION for the hero background image
 const IMAGE_CONFIG = {
@@ -82,14 +82,20 @@ const StatItem = ({ stat }) => {
     <motion.div
       key={stat.name}
       ref={inViewRef} // Attach ref for intersection observation
-      className="flex flex-col items-center gap-y-3 p-6 bg-gray-800/60 rounded-xl shadow-lg border border-blue-600/50 backdrop-blur-sm min-w-0"
+      // Adjusted padding for better responsiveness on small screens:
+      // sm:p-4 for 320px, xs:p-6 for 460px, md:p-8 for 768px and up
+      className="flex flex-col items-center gap-y-4 sm:p-4 xs:p-6 md:p-8 bg-gray-800/60 rounded-xl shadow-lg border border-blue-600/50 backdrop-blur-sm min-w-0"
       variants={statItemVariants}
       initial="hidden"
       animate={inView ? "visible" : "hidden"} // Animate based on inView status
       viewport={{ once: true, amount: 0.5 }}
     >
-      <dt className="text-sm font-semibold leading-6 text-gray-300">{stat.name}</dt>
-      <dd className="order-first text-3xl font-semibold tracking-tight text-white sm:text-5xl drop-shadow-lg">
+      {/* Adjusted font size for stat name for better responsiveness:
+          sm:text-base for 320px, xs:text-lg for 460px, md:text-xl for 768px and up */}
+      <dt className="sm:text-base xs:text-lg md:text-xl font-semibold leading-6 text-gray-300">{stat.name}</dt>
+      {/* Adjusted font size for animated count for better responsiveness:
+          sm:text-3xl for 320px, xs:text-4xl for 460px, md:text-5xl lg:text-6xl for larger screens */}
+      <dd className="order-first sm:text-3xl xs:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-white drop-shadow-lg">
         <span className="text-yellow-400">
           {animatedCount}
         </span>
@@ -113,37 +119,37 @@ const impactStats = [
 // Data for the Milestones Timeline
 const milestones = [
   {
-    year: '2020',
+    year: '2025',
     title: 'Kiddo Skills Founded',
     description: 'Our journey began with a small team and a big dream: to make learning fun and accessible for every child.',
     image: '/journey.jpg',
   },
   {
-    year: '2021',
+    year: '2025',
     title: 'Launch of Core Curriculum',
     description: 'Released our first set of interactive lessons covering foundational skills in math, science, and language arts.',
     image: '/cu.jpg',
   },
   {
-    year: '2022',
+    year: '2026',
     title: 'Reached 10,000 Active Users',
     description: 'A significant milestone, demonstrating the growing impact and reach of our platform.',
     image: '/users.jpg',
   },
   {
-    year: '2023',
+    year: '2026',
     title: 'Introduced AI Learning Buddies',
     description: 'Revolutionized personalized learning with the integration of AI-powered interactive companions.',
     image: 'ai.jpg',
   },
   {
-    year: '2024',
+    year: '2027',
     title: 'Global Expansion to 3+ Countries',
     description: 'Expanded our reach, making Kiddo Skills available to children in new regions worldwide.',
     image: '/world.jpg',
   },
   {
-    year: '2025',
+    year: '2028',
     title: 'Partnership with Leading Educational Publishers',
     description: 'Collaborated with top publishers to integrate even more high-quality content into our platform.',
     image: '/team.jpg',
@@ -171,7 +177,7 @@ export default function OurTrackRecordPage() {
   return (
     // Corrected pt-30 to pt-20 to ensure proper spacing below the fixed header.
     // min-h-screen ensures the page takes at least full viewport height.
-    <div className="bg-gray-950 min-h-screen font-rob overflow-x-hidden text-gray-200 pt-20">
+    <div className="bg-gray-950 font-rob overflow-x-hidden text-gray-200 pt-30">
       {/* Header is omitted here, as it's expected to be rendered globally by App.jsx */}
 
       {/* Hero Section for Track Record */}
@@ -188,7 +194,7 @@ export default function OurTrackRecordPage() {
 
         <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center relative z-10">
           <motion.h2
-            className="text-4xl font-bold tracking-tight text-yellow-300 sm:text-6xl drop-shadow-lg"
+            className="text-4xl font-bold tracking-tight text-yellow-300 sm:text-3xl drop-shadow-lg"
             initial="hidden"
             whileInView="visible"
             variants={textVariants}
@@ -233,7 +239,7 @@ export default function OurTrackRecordPage() {
       <section className="bg-gray-950 py-24 sm:py-32">
         <motion.div
           className="mx-auto max-w-7xl px-6 lg:px-8"
-          initial="hidden"
+          initial="visible"
           whileInView="visible"
           variants={sectionVariants}
           viewport={{ once: true, amount: 0.3 }}

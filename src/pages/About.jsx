@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'; // Ensure Link is imported for navigati
 import { useInView } from 'react-intersection-observer';
 import { FaLightbulb, FaSmile, FaHandshake, FaShieldAlt, FaRocket, FaGlobe } from 'react-icons/fa';
 import Header from "../components/Header"
+import BackToTop from '../components/BackToTop';
 import "../index.css"
 
 
@@ -405,7 +406,7 @@ export default function About() {
           </div>
         </motion.div>
       </section>
-
+<BackToTop/>
     </div>
   );
 }

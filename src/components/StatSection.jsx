@@ -70,7 +70,7 @@ const useCountUp = (end, duration = 2000, decimalPlaces = 0) => {
 const stats = [
   { name: 'Active Young Learners', value: 100, suffix: '+' },
   { name: 'Fun Learning Activities', value: 500, suffix: '+' },
-  { name: 'Skills Mastered', value: 79, suffix: '%', decimalPlaces: 1 }, // Added decimalPlaces for precise formatting
+  { name: 'Skills Mastered', value: 39, suffix: '%' }, // Added decimalPlaces for precise formatting
   { name: 'Hours of Engaged Learning', value: 100, suffix: '+' },
 ];
 

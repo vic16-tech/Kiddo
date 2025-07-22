@@ -99,7 +99,7 @@ function Home() {
                 {heroMainTitle}
               </motion.h1>
               <motion.p
-                className="mt-6 text-lg leading-8 text-gray-600"
+                className="mt-6 text-lg leading-8 text-black"
                 initial="hidden"
                 animate="visible"
                 variants={textVariants}

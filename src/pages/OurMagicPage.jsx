@@ -109,7 +109,7 @@ export default function OurMagicPage() {
           <h2 className="text-center text-3xl font-bold tracking-tight text-cyan-400 sm:text-4xl drop-shadow-md mb-16">
             Our Unique Approach
           </h2>
-          <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:grid-cols-2 lg:max-w-none lg:grid-cols-3">
+          <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
             {magicFeatures.map((feature, index) => (
               <motion.div
                 key={index}

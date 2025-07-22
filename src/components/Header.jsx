@@ -23,12 +23,12 @@ export default function Header() {
 
   return (
     <motion.header
-      className="fixed inset-x-0 top-0 z-50 bg-gray-950/80 backdrop-blur-sm shadow-sm"
+      className="fixed inset-x-0 top-0 font-rob z-50 bg-gray-950/80 backdrop-blur-sm shadow-sm"
       initial={{ opacity: 0, y: -50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
     >
-      <nav aria-label="Global" className="flex items-center  font-rob justify-between p-6 lg:px-8">
+      <nav aria-label="Global" className="flex items-center  font-rob justify-between p-6 lg:px-8 ">
         <div className="flex lg:flex-1">
           <Link to="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Kiddo Skills</span>
@@ -57,13 +57,13 @@ export default function Header() {
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Link to="/login" className="text-sm font-semibold leading-6 text-cyan-400 hover:text-cyan-300">
+          <Link to="/login" className="text-sm font-semibold  font-rob leading-6 text-cyan-400 hover:text-cyan-300">
             Kiddo Login <span aria-hidden="true">&rarr;</span>
           </Link>
         </div>
       </nav>
       <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
-        <div className="fixed inset-0 z-50 bg-gray-950/70" onClick={() => setMobileMenuOpen(false)} />
+        <div className="fixed  font-rob inset-0 z-50 bg-gray-950/70" onClick={() => setMobileMenuOpen(false)} />
         <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-gray-900 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-700/10">
           <div className="flex items-center justify-between">
             <Link to="/" className="-m-1.5 p-1.5">
@@ -91,7 +91,7 @@ export default function Header() {
                     key={item.name}
                     to={item.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-cyan-400 hover:bg-gray-700"
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold font-rob leading-7 text-cyan-400 hover:bg-gray-700"
                   >
                     {item.name}
                   </Link>

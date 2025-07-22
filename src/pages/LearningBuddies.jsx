@@ -1,13 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-// Import icons from lucide-react (ensure you have it installed: npm install lucide-react)
+
 import { Brain, MessageSquareText, Smile, Sparkles, UserCheck, Zap } from 'lucide-react';
-import BackToTop from '../components/BackToTop'; // Ensure this path is correct
-import Header from "../components/Header"
+import BackToTop from '../components/BackToTop'; 
+import Header from "../components/Header";
+import "../index.css"
 
 // Placeholder image for the hero section
-const HERO_IMAGE = "/ai.jpg"; // You can replace this with an actual image
+const HERO_IMAGE = "/ai.jpg"; 
 
 // --- Framer Motion Variants ---
 const sectionVariants = {
@@ -158,12 +159,16 @@ export default function LearningBuddiesPage() {
           <h2 className="text-center text-3xl font-bold tracking-tight text-pink-400 sm:text-4xl drop-shadow-md mb-16">
             How Your Buddy Helps You Grow
           </h2>
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {/* Modified parent div for responsive grid/flex behavior */}
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-3 md:grid-cols-2 md:gap-4 justify-items-center">
             {buddyFeatures.map((feature, index) => (
               <motion.div
                 key={index}
-                className="flex flex-col items-center p-8 bg-gray-800/60 rounded-2xl shadow-lg border border-purple-600/50 backdrop-blur-sm text-center transform hover:scale-105 transition-transform duration-300"
-                initial="hidden"
+                // Removed sm:w-[10rem] and added w-full max-w-xs for mobile stacking and width control
+                // md:w-auto to allow grid sizing from md breakpoint
+                className="flex flex-col items-center p-5 bg-gray-800/60 rounded-2xl shadow-lg border border-purple-600/50 backdrop-blur-sm text-center transform hover:scale-105 transition-transform duration-300
+                           w-full max-w-xs md:w-auto"
+                initial="visible"
                 whileInView="visible"
                 variants={cardVariants}
                 transition={{ delay: 0.1 * index }}
@@ -209,7 +214,7 @@ export default function LearningBuddiesPage() {
         </motion.div>
       </section>
 
-      <BackToTop/>
+      <BackToTop/> 
     </div>
   );
 }

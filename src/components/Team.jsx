@@ -7,7 +7,6 @@ import { FaInstagram, FaLinkedinIn, FaFacebookF } from 'react-icons/fa';
 import BackToTop from '../components/BackToTop'; // Corrected import path and name
 import team from "/team.jpg"; // Background image for the Team page
 import Header from "../components/Header";
-import Mission from "../pages/Mission"
 
 // IMAGE CONFIGURATION for logos in the header of the Team page
 const IMAGE_CONFIG = {
@@ -45,9 +44,9 @@ const people = [
     ],
   },
   {
-    name: 'Dries Vincent',
+    name: 'Peter Ojochegbe',
     role: 'Head of Product Development',
-    imageUrl: 'https://placehold.co/256x256/1E293B/E2E8F0?text=DV',
+    imageUrl: 'https://placehold.co/256x256/1E293B/E2E8F0?text=PO',
     socials: [
       { type: 'instagram', href: '#', icon: FaInstagram },
       { type: 'linkedin', href: '#', icon: FaLinkedinIn },
@@ -181,34 +180,34 @@ export default function TeamPage() {
   };
 
   return (
-    <div className="bg-gray-900 min-h-screen font-rob overflow-x-hidden">
+    <div className="bg-gray-900 font-rob overflow-x-hidden">
       {/* Fixed Header */}
      <Header/>
 
       {/* Main Team Content with Background Illustration */}
-      <div className="relative pt-42 pb-16 sm:pb-24 xs:pt-52 lg:pb-32  font-rob min-h-screen block w-full"> {/* Added block w-full and pt-32 for offset */}
+      <div className="relative sm:pt-[12rem] pt-42 pb-16 sm:pb-24 xs:pt-52 lg:pb-32  font-rob min-h-screen block w-full"> {/* Added block w-full and pt-32 for offset */}
         {/* Background Illustration Container */}
         <div className="absolute inset-0 z-0">
           <img
             src={team}
             alt="Team Illustration Background"
-            className="w-full h-full object-cover opacity-30" // Adjust opacity as needed
+            className="w-full h-full object-cover opacity-32" // Adjust opacity as needed
             onError={(e) => { e.target.onerror = null; e.target.src = BACKGROUND_FALLBACK_URL; }}
           />
           {/* Overlay for text readability */}
-          <div className="absolute inset-0 bg-gray-900/70"></div> {/* Dark overlay */}
+          <div className="absolute inset-0 font-rob bg-gray-900/70"></div> {/* Dark overlay */}
         </div>
 
         <motion.div
           className="mx-auto grid max-w-7xl gap-y-16 gap-x-8 px-6 lg:px-8 xl:grid-cols-3 relative z-10  w-full"
-          initial="hidden"
+          initial="visible"
           whileInView="visible"
           variants={sectionVariants}
           viewport={{ once: true, amount: 0.3 }}
         >
-          <div className="max-w-xl lg:text-center xl:text-left">
+          <div className="max-w-xl lg:text-center big:text-center xl:text-left">
             <motion.h2
-              className="text-3xl font-semibold tracking-tight text-cyan-400 sm:text-4xl drop-shadow-md"
+              className="text-3xl font-semibold tracking-tight text-center text-cyan-400 sm:text-4xl drop-shadow-md"
               variants={textVariants}
             >
               Meet Our Dedicated Team

@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Target, Heart, Lightbulb, Users, Handshake, BookOpen } from 'lucide-react';
 import BackToTop from '../components/BackToTop'; 
+import "../index.css"
 
 // Image configuration for the hero background image
 const IMAGE_CONFIG = {
@@ -159,11 +160,11 @@ export default function MissionPage() {
           <h2 className="text-center text-3xl font-bold tracking-tight text-pink-400 sm:text-4xl drop-shadow-md mb-16">
             Values That Drive Us
           </h2>
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-8  lg:grid-cols-3">
             {coreValues.map((value, index) => (
               <motion.div
                 key={index}
-                className="flex flex-col items-center p-8 bg-gray-800/60 rounded-2xl shadow-lg border border-purple-600/50 backdrop-blur-sm text-center transform hover:scale-105 transition-transform duration-300"
+                className="flex flex-col items-center p-8 bg-gray-800/60 Z:flex rounded-2xl shadow-lg border border-purple-600/50 backdrop-blur-sm text-center transform hover:scale-105 transition-transform duration-300"
                 initial="hidden"
                 whileInView="visible"
                 variants={cardVariants}

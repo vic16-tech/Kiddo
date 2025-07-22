@@ -11,21 +11,28 @@ const testimonials = [
     author: "Sarah J.",
     title: "Parent & Educator",
     avatar: "https://placehold.co/150x150/8A2BE2/FFFFFF?text=SJ", // Placeholder for avatar
-    logo: "/Logo.jpg" // Placeholder for company logo if applicable
+    logo: "/Logo.jpg" 
+  },
+    {
+    quote: "“I thought Kiddos was just another ed platform, but the team here are excellent and surpass expectations, all at affordable rates!.”",
+    author: " Praise A.",
+    title: "3 times STAR of the week winner, Kiddos",
+    avatar: "https://placehold.co/150x150/8A2BE2/FFFFFF?text=PA", // Placeholder for avatar
+    logo: "/Logo.jpg" 
   },
   {
     quote: "“My son absolutely loves the coding adventures! He's always excited for his next 'mission.' It's amazing to see him learn complex concepts while having so much fun. Highly recommend!”",
     author: "David M.",
     title: "Happy Dad",
     avatar: "https://placehold.co/150x150/FFD700/000000?text=DM",
-    logo: "https://placehold.co/100x32/1E293B/E2E8F0?text=KIDDO+LOGO"
+    logo: "/Logo.jpg"
   },
   {
     quote: "“As a busy parent, the personalized learning paths are a lifesaver. My daughter is thriving at her own pace, and the progress tracking gives me peace of mind. Truly a fantastic platform.”",
     author: "Emily R.",
     title: "Busy Mom",
     avatar: "https://placehold.co/150x150/32CD32/000000?text=ER",
-    logo: "https://placehold.co/100x32/1E293B/E2E8F0?text=KIDDO+LOGO"
+    logo: "/Logo.jpg"
   }
 ];
 
@@ -40,7 +47,7 @@ export default function TestimonialsSection() { // Changed component name for cl
     }, 8000); // Change testimonial every 8 seconds
 
     return () => clearInterval(interval);
-  }, [testimonials.length]); // Added dependency to suppress warning
+  }, []); // Added dependency to suppress warning
 
   const currentTestimonial = testimonials[currentTestimonialIndex];
 

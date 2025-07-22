@@ -6,40 +6,43 @@
     font-family: Roboto ;
     src: url("./assets/RobotoMono-ExtraLight.ttf");
 }
+
 @theme{
-    --font-rob:"Roboto";
+     --font-rob:"Roboto";
     --breakpoint-sm:320px;
     --breakpoint-xs:460px;
+    --breakpoint-Z:330px;
     --breakpoint-md:768px;
     --breakpoint-lg:1024px;
     --breakpoint-xl:1280px;
     }
 
-/* Custom Cursor Styles (ensure these are correct based on your public folder structure) */
-body {
-  cursor: url('/cursor.png'), auto;
-}
 
+/* Custom Cursor Styles (ensure these are correct based on your public folder structure) */
+body,html{
+  cursor: url('/cursor.png'), auto;
+  /* font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
 a, button, input[type="submit"], input[type="button"], .cursor-pointer {
   cursor: url('/cursor1.png'), pointer;
 }
 
-/* --- Timeline specific styles (REWRITTEN FOR ALIGNMENT & SPACING) --- */
+}
+
+/* --- Timeline specific styles --- */
 
 /* The main container for the timeline items and the line */
 .timeline-container {
   position: relative;
   padding: 10px;
-  min-height: 1000px; /* Ensures the container has a height on initial render */
-  /* DEBUGGING: Background to see container boundaries */
-  background-color: rgba(0, 0, 255, 0.05);
+  min-height: 1500px; /* Keep a reasonable min-height for initial render */
+  overflow: hidden; /* Prevent content from breaking out of container */
 }
 
 /* The central vertical line */
 .timeline-line {
   left: 50%;
   transform: translateX(-50%); /* Center the line precisely */
-  border-left: 4px solid rgb(43, 93, 185); 
+  border-left: 2px solid #4B5563; /* Subtle gray line */
   position: absolute;
   height: 100%;
   top: 0;
@@ -48,35 +51,40 @@ a, button, input[type="submit"], input[type="button"], .cursor-pointer {
 
 /* Individual timeline item container */
 .timeline-item {
-  position: relative; /* Crucial for absolute positioning of children */
-  display: flex; /* Use flex for desktop layout */
+  position: relative; /* For absolute positioning of the circle */
+  display: flex; /* Use flexbox for desktop layout */
   align-items: center; /* Vertically align circle and content */
   width: 100%;
   margin-bottom: 80px; /* Consistent spacing between items */
-  min-height: 150px; /* Ensure each item has enough height for content */
-  /* DEBUGGING: Background to see item boundaries */
-  background-color: rgba(255, 255, 0, 0.05);
+  min-height: 200px; /* Ensure each item has enough height for content */
 }
 
 /* The circle containing the year */
 .timeline-circle {
-  position: absolute;
+  position: absolute; /* Absolute relative to .timeline-item */
   left: 50%;
-  top: 50%; /* Position at vertical center of the item */
+  top: 50%; /* Center vertically within the item */
   transform: translate(-50%, -50%); /* Combine horizontal and vertical centering */
   z-index: 3; /* Ensure circle is above line and content */
-  /* DEBUGGING: Bright background for visibility */
-  background-color: blue;
-  border: 2px solid white;
+  background-color: #3B82F6; /* Example: blue-500 */
+  border: 2px solid #EAB308; /* Example: yellow-500 */
+  width: 60px;
+  height: 60px;
+  border-radius: 9999px; /* Tailwind's rounded-full */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: white;
 }
 
 /* The content box for each milestone */
 .timeline-content {
-  /* Changed to relative for flexbox to control its position */
-  position: relative;
+  position: relative; /* Keep relative for z-index and internal flow */
   z-index: 2; /* Ensure content is above the line */
-  width: calc(50% - 60px); /* Half width minus space for circle (20px) + gap (40px) */
-  box-sizing: border-box; /* Include padding/border in width calculation */
+  width: calc(50% - 80px); /* Half width minus space for circle (30px) + gap (50px) */
+  box-sizing: border-box;
+  padding: 1.5rem; /* Ensure internal padding */
 }
 
 /* Desktop styles for alternating content */
@@ -85,7 +93,7 @@ a, button, input[type="submit"], input[type="button"], .cursor-pointer {
 }
 
 .timeline-item.left-aligned .timeline-content {
-  margin-right: 60px; /* Space from the center line/circle */
+  margin-right: 80px; /* Space from the center line/circle */
   margin-left: 0; /* Ensure no left margin */
   text-align: right; /* Align text to the right for left-aligned boxes */
 }
@@ -95,49 +103,60 @@ a, button, input[type="submit"], input[type="button"], .cursor-pointer {
 }
 
 .timeline-item.right-aligned .timeline-content {
-  margin-left: 60px; /* Space from the center line/circle */
+  margin-left: 80px; /* Space from the center line/circle */
   margin-right: 0; /* Ensure no right margin */
   text-align: left; /* Align text to the left for right-aligned boxes */
 }
 
 /* Ensure the image within timeline-content is not affected by text-align */
 .timeline-content img {
-    text-align: initial; /* Reset text-align for images */
+    text-align: initial;
+    max-width: 100%; /* Ensure images scale */
+    height: auto;
 }
 
 
-/* Adjust for smaller screens (mobile first approach) */
+/* Adjust for smaller screens (mobile first approach)
 @media (max-width: 768px) { /* Tailwind's 'md' breakpoint */
-  .timeline-line {
-    left: 20px;
-    transform: translateX(0);
-  }
+  /* .timeline-line {
+    left: 50%; /* Keep line centered on mobile */
+    /* transform: translateX(-50%);
+    border-left: 2px solid #4B5563; /* Subtle gray line 
+  }  */ 
 
   .timeline-item {
-    flex-direction: column !important; /* Stack items vertically */
-    align-items: flex-start !important; /* Align content to the left */
-    padding-left: 40px; /* Make space for the line and circle */
-    width: 100% !important; /* Ensure full width on mobile */
-    margin-bottom: 40px; /* Reduced margin for mobile */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center content horizontally */
+    padding: 0 15px; /* Add horizontal padding to the item itself */
+    width: 100%; /* Take full width, padding adds space */
+    max-width: 400px; /* Limit max width for very wide phones/small tablets */
+    margin: 0 auto 40px auto; /* Center the item and add bottom margin */
     min-height: auto; /* Allow height to adjust to content */
-    justify-content: flex-start !important; /* Reset justify-content for mobile */
+    height: auto; /* Allow height to adjust to content on mobile */
+    justify-content: center; /* Center content vertically within item */
+    box-sizing: border-box; /* Include padding in width calculation */
   }
 
   .timeline-circle {
-    left: 5px;
-    top: 0; /* Align to the top of the item */
-    transform: translateX(0); /* Remove horizontal transform */
-    margin-top: 0;
-    margin-bottom: 0;
+    position: relative; /* Change to relative for mobile flow */
+    left: initial; /* Reset left positioning */
+    top: initial; /* Reset top positioning */
+    transform: none; /* Remove transforms */
+    margin-bottom: 15px; /* Add space below circle */
+    width: 50px; /* Smaller circle on mobile */
+    height: 50px; /* Smaller circle on mobile */
   }
 
   .timeline-content {
     position: relative; /* Keep relative for mobile stacking */
-    width: 100%; /* Content takes full width on mobile */
+    width: 100%; /* Content takes full width of the centered item */
     margin-left: 0;
     margin-right: 0;
-    text-align: left; /* Ensure text is left-aligned on mobile */
+    text-align: center; /* Center text on mobile */
     left: initial; /* Reset left positioning */
     right: initial; /* Reset right positioning */
+    top: initial; /* Reset top positioning */
+    transform: none; /* Reset transforms */
+    padding: 1rem; /* Ensure internal padding */
   }
-}
+

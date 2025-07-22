@@ -79,7 +79,7 @@ export default function PricingPage() {
     // The outermost div of the page component.
     // It should define the background and minimum height for the page content.
     // The pt-20 is for the global header. This is applied here to the root of the page content.
-    <div className="bg-gray-900 min-h-screen font-rob overflow-x-hidden">
+    <div className="bg-gray-900 pt-12 font-rob overflow-x-hidden">
       {/* The Header component is now expected to be rendered once globally in App.jsx */}
 
       {/* Main Content Area (Pricing Section)
@@ -95,13 +95,13 @@ export default function PricingPage() {
       >
         <motion.div
           className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 text-center block w-full"
-          initial="hidden"
+          initial="visible"
           whileInView="visible"
           variants={sectionVariants}
           viewport={{ once: true, amount: 0.3 }}
         >
           <motion.h2
-            className="text-4xl font-bold tracking-tight text-cyan-400 sm:text-6xl drop-shadow-md"
+            className="text-4xl font-bold tracking-tight text-cyan-400 sm:text-3xl drop-shadow-md"
             variants={textVariants}
           >
             Pricing that grows with your little one's learning
